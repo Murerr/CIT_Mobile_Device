@@ -25,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Button mSecondActivityButton = (Button) findViewById(R.id.mSecondActivityButton);
-        Button mThirdActivityButton = (Button) findViewById(R.id.mThirdActivityButton);
-        Button mTranslateButton = (Button) findViewById(R.id.mTranslateButton);
-        TextView mTranslateTextView = (TextView) findViewById(R.id.mTranslation);
-        TextView mDataTextView = (TextView) findViewById(R.id.mData);
-        EditText mInputText = (EditText) findViewById(R.id.mInputText);
+        Button mSecondActivityButton =  findViewById(R.id.mSecondActivityButton);
+        Button mThirdActivityButton = findViewById(R.id.mThirdActivityButton);
+        Button mTranslateButton = findViewById(R.id.mTranslateButton);
+        TextView mTranslateTextView = findViewById(R.id.mTranslation);
+        TextView mDataTextView = findViewById(R.id.mData);
+        EditText mInputText = findViewById(R.id.mInputText);
 
         mSecondActivityButton.setOnClickListener((View v) -> {
             Intent intent = new Intent(this, SecondActivity.class);

@@ -23,8 +23,8 @@ public class SecondActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(EXTRA_MESSAGE);
 
-        TextView mDataPassedTextview = (TextView) findViewById(R.id.mDataPassedTextview);
-        Button mGenerateDialog = (Button) findViewById(R.id.mGenerateDialog);
+        TextView mDataPassedTextview = findViewById(R.id.mDataPassedTextview);
+        Button mGenerateDialog = findViewById(R.id.mGenerateDialog);
 
         mDataPassedTextview.setText(message);
         mGenerateDialog.setOnClickListener((View v) -> {
