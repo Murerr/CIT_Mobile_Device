@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Compte-Rendu Application Mobile</string>
+    <string name="Second_Activity">Seconde Activite</string>
+    <string name="Translate">Traduire</string>
+    <string name="Input_Text">Saisir le texte</string>
+    <string name="Morse_tranlation">Traduction en Morse</string>
+</resources>
