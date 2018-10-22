@@ -5,4 +5,14 @@
     <string name="Input_Text">Input Text</string>
     <string name="Morse_tranlation">Morse Translation</string>
     <string name="title_activity_second">SecondActivity</string>
+    <string name="data_should_appear_here">Data should Appear here</string>
+    <string name="pick_color">Pick a Color</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="Color_Red">Red</string>
+    <string name="Color_Green">Green</string>
+    <string name="Color_Blue">Blue</string>
+    <string name="Third_Activity">Third Activity</string>
+    <string name="color_picked">The color you choose is :</string>
+    <string name="Main_Actvity">Go back to Main activity</string>
 </resources>
