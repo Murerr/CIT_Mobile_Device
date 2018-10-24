@@ -15,4 +15,10 @@
     <string name="Third_Activity">Third Activity</string>
     <string name="color_picked">The color you choose is :</string>
     <string name="Main_Actvity">Go back to Main activity</string>
+    <string name="Send_Notification">Send a Notification</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="generate_Map">Open Google Map</string>
 </resources>

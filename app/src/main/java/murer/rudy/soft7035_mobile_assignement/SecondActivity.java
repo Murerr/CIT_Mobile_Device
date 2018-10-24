@@ -1,9 +1,9 @@
 package murer.rudy.soft7035_mobile_assignement;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,12 +25,21 @@ public class SecondActivity extends AppCompatActivity {
 
         TextView mDataPassedTextview = findViewById(R.id.mDataPassedTextview);
         Button mGenerateDialog = findViewById(R.id.mGenerateDialog);
+        Button mGenerateMap = findViewById(R.id.mGenerateMap);
 
         mDataPassedTextview.setText(message);
         mGenerateDialog.setOnClickListener((View v) -> {
             Dialog mPickAColorDialog = CreateDialogColorPicker(savedInstanceState);
             mPickAColorDialog.show();
         });
+
+        mGenerateMap.setOnClickListener((View v) -> {
+            //MapViewFragment mapFragment = new MapViewFragment();
+
+        });
+
+
+
 
     }
 
@@ -60,6 +69,7 @@ public class SecondActivity extends AppCompatActivity {
 
         return builderSingle.create();
     }
+
 
 
 
