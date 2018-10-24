@@ -34,8 +34,8 @@ public class SecondActivity extends AppCompatActivity {
         });
 
         mGenerateMap.setOnClickListener((View v) -> {
-            //MapViewFragment mapFragment = new MapViewFragment();
-
+                Intent mapintent = new Intent(this, MapsActivity.class);
+                startActivity(mapintent);
         });
 
 
