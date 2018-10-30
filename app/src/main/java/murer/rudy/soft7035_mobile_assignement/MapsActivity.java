@@ -1,7 +1,7 @@
 package murer.rudy.soft7035_mobile_assignement;
 
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -10,6 +10,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+/**
+ * The Maps activity.
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -39,8 +42,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(51.8985, 8.4756);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in CORK"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng cork = new LatLng(51.8985, -8.4756);
+        mMap.addMarker(new MarkerOptions().position(cork).title("Marker in CORK"));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cork,16f));
     }
 }

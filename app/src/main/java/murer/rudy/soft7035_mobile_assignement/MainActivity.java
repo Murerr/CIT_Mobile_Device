@@ -8,18 +8,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * The Main Activity.
+ */
 public class MainActivity extends AppCompatActivity {
+    /**
+     * The Extra message that will Hold Intent extra message Intent.
+     */
     static String EXTRA_MESSAGE = "MainActivity";
 
-
-
+    /**
+     * The Text view key.
+     */
     String TEXT_VIEW_KEY;
-    String GAME_STATE_KEY;
-    TextView mTextView;
+    /**
+     * The Game state key.
+     */
+    String GAME_STATE_KEY;// some transient state for the activity instance
+    /**
+     * The M game state.
+     */
+    String mGameState;// some transient state for the activity instance
 
-    // some transient state for the activity instance
-    String mGameState;
-
+    Map<String,String> dictionary = generateMorseDictionnary();
 
 
     @Override
@@ -30,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intentgetData = getIntent();
         String message = intentgetData.getStringExtra(EXTRA_MESSAGE);
 
+        /**
+         * Find all the views from the layout
+         */
 
         TextView mTranslateTextView = findViewById(R.id.mTranslation);
         Button mSecondActivityButton =  findViewById(R.id.mSecondActivityButton);
@@ -42,42 +59,115 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             mGameState = savedInstanceState.getString(GAME_STATE_KEY);
         }
+
+        /*Translate Button Click Listener*/
         mTranslateButton.setOnClickListener((View v) -> {
-            mTranslateTextView.setText(mInputText.getText());
+            String textTranslated = TextToMorse(mInputText.getText().toString());
+            mTranslateTextView.setText(textTranslated);
         });
 
-
+        /*Second Button Click Listener*/
         mSecondActivityButton.setOnClickListener((View v) -> {
             Intent intent = new Intent(this, SecondActivity.class);
-            intent.putExtra(EXTRA_MESSAGE, mInputText.getText());
+            intent.putExtra(EXTRA_MESSAGE, mInputText.getText().toString().toUpperCase());
             startActivity(intent);
         });
 
+        /*Second Button Click Listener*/
         mThirdActivityButton.setOnClickListener((View v) -> {
             Intent intent = new Intent(this, ThirdActivity.class);
-            intent.putExtra(EXTRA_MESSAGE, mInputText.getText());
             startActivity(intent);
         });
         mDataTextView.setText(message);
     }
 
+    /**
+     *
+     * @param string The EditText
+     * @return A String of the Translated Text in Morse
+     */
+    private String TextToMorse(String string) {
+
+        String[] stringArray = string.split("");
+
+        StringBuilder res = new StringBuilder();
+
+        for (int i=1;i<stringArray.length;i++){
+            String myletter = charToMorseLetter(stringArray[i]);
+            res.append(myletter);
+        }
+        return res.toString();
+    }
+
+
+    private String charToMorseLetter(String o) {
+        String letterTOMorse = dictionary.get(o);
+        if (letterTOMorse == null){ // if letter is null add space
+            letterTOMorse ="/";
+        }
+        return letterTOMorse;
+    }
+
     // This callback is called only when there is a saved instance that is previously saved by using
-// onSaveInstanceState(). We restore some state in onCreate(), while we can optionally restore
-// other state here, possibly usable after onStart() has completed.
-// The savedInstanceState Bundle is same as the one used in onCreate().
+    // onSaveInstanceState(). We restore some state in onCreate(), while we can optionally restore
+    // other state here, possibly usable after onStart() has completed.
+    // The savedInstanceState Bundle is same as the one used in onCreate().
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
-        TextView mTranslateTextView = findViewById(R.id.mTranslation);
-        mTranslateTextView.setText(savedInstanceState.getString(TEXT_VIEW_KEY));
+        TextView mInputText = findViewById(R.id.mInputText);
+        mInputText.setText(savedInstanceState.getString(TEXT_VIEW_KEY));
     }
 
     // invoked when the activity may be temporarily destroyed, save the instance state here
+
+    /**
+     *
+     * @param outState
+     */
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        TextView mTranslateTextView = findViewById(R.id.mTranslation);
-        String myTextSaved = mTranslateTextView.getText().toString();
+        TextView mInputText = findViewById(R.id.mInputText);
+        String myTextSaved = mInputText.getText().toString();
         outState.putString(GAME_STATE_KEY, mGameState);
         outState.putString(TEXT_VIEW_KEY, myTextSaved);
         super.onSaveInstanceState(outState);
     }
+
+    private Map<String,String> generateMorseDictionnary(){
+        Map<String,String> hm = new HashMap<String,String>();
+        hm.put("A", ".- ");
+        hm.put("B", "-... ");
+        hm.put("C", "-.-. ");
+        hm.put("D", "-.. ");
+        hm.put("E", ". ");
+        hm.put("F", "..-. ");
+        hm.put("G", "--. ");
+        hm.put("H", ".... ");
+        hm.put("I", ".. ");
+        hm.put("J", ".--- ");
+        hm.put("K", "-.- ");
+        hm.put("L", ".-.. ");
+        hm.put("M", "-- ");
+        hm.put("N", "-. ");
+        hm.put("O", "--- ");
+        hm.put("P", ".--. ");
+        hm.put("Q", "--.- ");
+        hm.put("R", ".-. ");
+        hm.put("S", "... ");
+        hm.put("T", "- ");
+        hm.put("U", "..- ");
+        hm.put("V", "...- ");
+        hm.put("W", ".-- ");
+        hm.put("X", "-..- ");
+        hm.put("Y", "-.-- ");
+        hm.put("Z", "--..");
+        return hm;
+    }
+
+
 }

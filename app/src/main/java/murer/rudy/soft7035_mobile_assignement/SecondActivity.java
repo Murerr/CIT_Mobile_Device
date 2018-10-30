@@ -3,7 +3,6 @@ package murer.rudy.soft7035_mobile_assignement;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,6 +12,9 @@ import android.widget.TextView;
 
 import static murer.rudy.soft7035_mobile_assignement.MainActivity.EXTRA_MESSAGE;
 
+/**
+ * The type Second activity.
+ */
 public class SecondActivity extends AppCompatActivity {
 
     @Override
@@ -20,19 +22,33 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+
+        /**
+         * Get the intent Content
+         */
         Intent intent = getIntent();
         String message = intent.getStringExtra(EXTRA_MESSAGE);
-
+        /**
+         * Find all the views from the layout
+         */
         TextView mDataPassedTextview = findViewById(R.id.mDataPassedTextview);
         Button mGenerateDialog = findViewById(R.id.mGenerateDialog);
         Button mGenerateMap = findViewById(R.id.mGenerateMap);
 
         mDataPassedTextview.setText(message);
+
+        /**
+         * Create The Dialog and display it
+         */
         mGenerateDialog.setOnClickListener((View v) -> {
             Dialog mPickAColorDialog = CreateDialogColorPicker(savedInstanceState);
             mPickAColorDialog.show();
         });
 
+
+        /**
+         * Generate A Google map
+         */
         mGenerateMap.setOnClickListener((View v) -> {
                 Intent mapintent = new Intent(this, MapsActivity.class);
                 startActivity(mapintent);
@@ -43,15 +59,14 @@ public class SecondActivity extends AppCompatActivity {
 
     }
 
+    /**
+     *  Generate the Dialog for the color picker
+     * @param savedInstanceState
+     * @return the Dialog
+     */
     private Dialog CreateDialogColorPicker(Bundle savedInstanceState) {
         AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
-        builderSingle.setTitle(R.string.pick_color)
-
-        .setPositiveButton(R.string.ok, (dialog, id) -> {
-            // User clicked OK, so save the mSelectedItems results somewhere
-            // or return them to the component that opened the dialog
-        })
-                .setNegativeButton(R.string.cancel, (dialog, id) -> dialog.dismiss());
+        builderSingle.setTitle(R.string.pick_color).setNegativeButton(R.string.cancel, (dialog, id) -> dialog.dismiss());
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice);
         arrayAdapter.add(getResources().getString(R.string.Color_Red));

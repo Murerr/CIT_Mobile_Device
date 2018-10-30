@@ -12,6 +12,9 @@ import android.widget.Button;
 
 import static murer.rudy.soft7035_mobile_assignement.MainActivity.EXTRA_MESSAGE;
 
+/**
+ * The Third activity.
+ */
 public class ThirdActivity extends AppCompatActivity {
 
     private String CHANNEL_ID = "MY_CHANNEL_ID";
@@ -22,17 +25,29 @@ public class ThirdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
 
+        /**
+         * Get the intent Data
+         */
         Intent intentMessage = getIntent();
         String message = intentMessage.getStringExtra(EXTRA_MESSAGE);
 
+        /**
+         * Find all the views from the layout
+         */
         Button mGoBackToMainActivity = findViewById(R.id.mGoBackToMainActivity);
         Button mSendNotificationButton = findViewById(R.id.mSendNotificationButton);
+        /**
+         * Go Back To The Main Activity
+         */
         mGoBackToMainActivity.setOnClickListener((View v) -> {
             Intent mintent = new Intent(this, MainActivity.class);
-            mintent.putExtra(EXTRA_MESSAGE, getResources().getString(R.string.Third_Activity));
+            mintent.putExtra(EXTRA_MESSAGE, "Data passed from the ThirdActivity");
             startActivity(mintent);
         });
 
+        /**
+         * Send a Notification with a Calling Intent
+         */
         mSendNotificationButton.setOnClickListener((View v) -> {
 
             Intent intent = new Intent(Intent.ACTION_DIAL);
